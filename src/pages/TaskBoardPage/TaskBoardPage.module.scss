@@ -1,0 +1,11 @@
+@import "../../styles/bundle.scss";
+
+.task-board {
+	&__input {
+		margin: 0 auto;
+	}
+
+	&__columns {
+		display: flex;
+	}
+}
