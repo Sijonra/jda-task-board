@@ -6,6 +6,7 @@ const cx = classNames.bind(styles);
 
 import BoardInput from "../../components/BoardInput/BoardInput";
 import BoardColumn from "../../components/BoardColumn/BoardColumn";
+import ModalWindow from "../../components/ModalWindow/ModalWindow";
 import { TCardList } from "../../@types/types";
 
 const cardsList: TCardList = [
@@ -65,6 +66,7 @@ const TaskBoardPage: FC = () => {
 
 	return (
 		<div className={cx("task-board")}>
+			<ModalWindow />
 			<div className={cx("task-board__input")}>
 				<BoardInput setCards={setCards} cards={cards}/>
 			</div>
