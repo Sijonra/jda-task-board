@@ -45,6 +45,10 @@ const TaskBoardPage: FC = () => {
 
 	const [cards, setCards] = useState<TCardList>(cardsList);
 
+	const onCardDelete = (cardId: number) =>{
+		setCards(cards.filter(card => card.id !== cardId))
+	}
+
 	const toDoCards = useMemo(()=>{
 		return cards.filter(card => card.columnId === 0)
 	}, [cards])
@@ -63,9 +67,9 @@ const TaskBoardPage: FC = () => {
 				<BoardInput setCards={setCards} cards={cards}/>
 			</div>
 			<div className={cx("task-board__columns")}>
-				<BoardColumn cards={toDoCards} />
-				<BoardColumn cards={inProgressCards} />
-				<BoardColumn cards={doneCards} />
+				<BoardColumn cards={toDoCards} onCardDelete={onCardDelete} />
+				<BoardColumn cards={inProgressCards} onCardDelete={onCardDelete} />
+				<BoardColumn cards={doneCards} onCardDelete={onCardDelete} />
 			</div>
 		</div>
 	);

@@ -1,16 +1,16 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC } from "react";
 import style from "./Button.module.scss";
-
 interface ButtonProps {
-  className?: string;
-  type: string;
-  icon?: boolean;
-  plusLeft?: boolean;
-  plusRight?: boolean;
-  iDownLeft?: boolean;
-  iDownRight?: boolean;
-  children?: React.ReactNode;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void; 
+	className?: string;
+	type: string;
+	icon?: boolean;
+	plusLeft?: boolean;
+	plusRight?: boolean;
+	iDownLeft?: boolean;
+	iDownRight?: boolean;
+	children?: React.ReactNode;
+	//   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+	onClick?: ()=> void;
 }
 
 const Button: FC<ButtonProps> = ({
