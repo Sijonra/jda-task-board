@@ -25,7 +25,7 @@ const BoardInput: FC<BoardInputProps> = ({setCards, cards}) => {
 	}
 
 	const addButtonSubmit = () =>{
-		const currentId = cards.length;
+		const currentId = cards.length+1;
 		const currentCard:TCard = {id:currentId, columnId: 0, content: inputValue}
 		setCards([...cards, currentCard]);
 		setInputValue('');
