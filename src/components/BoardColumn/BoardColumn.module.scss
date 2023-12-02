@@ -4,7 +4,7 @@
 	padding: 20px;
 	width: 15vw;
 	min-height: 100vh;
-	background-color: $color-orange-light;
+	background-color: $color-teal-lightest;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -20,5 +20,16 @@
 		&:not(:last-child) {
 			margin-bottom: 20px;
 		}
+	}
+}
+
+.board-card{
+	position: relative;
+	font-family: $font-SF-PRO-TEXT;
+	
+	&__badge{
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 }
