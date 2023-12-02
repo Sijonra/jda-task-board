@@ -6,6 +6,7 @@ const cx = classNames.bind(styles);
 
 import BoardInput from "../../components/BoardInput/BoardInput";
 import BoardColumn from "../../components/BoardColumn/BoardColumn";
+import ModalWindow from "../../components/ModalWindow/ModalWindow";
 import { TCardList } from "../../@types/types";
 
 const cardsList: TCardList = [
@@ -44,10 +45,26 @@ const cardsList: TCardList = [
 const TaskBoardPage: FC = () => {
 
 	const [cards, setCards] = useState<TCardList>(cardsList);
+	const [modalWindowIsActive, setModalWindowIsActive] = useState<boolean>(false);
+	const [deletingCardId, setDeletingCardId] = useState<number | null>(null);
 
+	const closeModalWindowAccept = () => {
+		if(deletingCardId !== null){
+			removeCard(deletingCardId);
+		}
+		setModalWindowIsActive(false);
+	}
+
+	const closeModalWindowDecline = () => setModalWindowIsActive(false);
+	
 	const onCardDelete = (cardId: number) =>{
-		const newCards = (cards.filter(card => card.id !== cardId))
-		newCards.map((card, index) => card.id = index + 1)
+		setDeletingCardId(cardId);
+		setModalWindowIsActive(true);
+	}
+
+	const removeCard = (cardId: number) => {
+		const newCards = (cards.filter(card => card.id !== cardId));
+		newCards.map((card, index) => card.id = index + 1);
 		setCards(newCards);
 	}
 
@@ -65,6 +82,9 @@ const TaskBoardPage: FC = () => {
 
 	return (
 		<div className={cx("task-board")}>
+			{
+				modalWindowIsActive && <ModalWindow closeModalWindowAccept={closeModalWindowAccept} closeModalWindowDecline={closeModalWindowDecline} />
+			}
 			<div className={cx("task-board__input")}>
 				<BoardInput setCards={setCards} cards={cards}/>
 			</div>
