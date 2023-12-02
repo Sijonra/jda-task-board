@@ -5,22 +5,27 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 import Card from "../Card/Card";
+import Badge from "../Badge/Badge";
 
-const BoardColumn: FC = () => {
+import { TCardList } from "../../@types/types";
+
+interface BoardColumnProps {
+	cards: TCardList;
+}
+
+const BoardColumn: FC<BoardColumnProps> = ({cards}) => {
 	return (
 		<div className={cx("board-column")}>
-			<Card elevation={3} className={cx("board-column__card")}>
-				Card
-			</Card>
-			<Card elevation={3} className={cx("board-column__card")}>
-				Card
-			</Card>
-			<Card elevation={3} className={cx("board-column__card")}>
-				Card
-			</Card>
-			<Card elevation={3} className={cx("board-column__card")}>
-				Card
-			</Card>
+			{
+				cards.map((card)=>{
+					return(
+						<Card elevation={3} className={cx("board-column__card", "board-card")}>
+							{card.content}
+							<Badge color="green" type="badge" theme="solid" text={card.id.toString()} className={cx('board-card__badge')} />
+						</Card>
+					)
+				})
+			}
 		</div>
 	);
 };
