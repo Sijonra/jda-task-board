@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import styles from "./modalWindow.module.scss";
+import styles from './ModalWindow.module.scss';
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
