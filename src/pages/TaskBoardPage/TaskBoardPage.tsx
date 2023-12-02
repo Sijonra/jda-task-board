@@ -1,4 +1,4 @@
-import { FC, useState, useMemo, useEffect } from "react";
+import { FC, useState, useMemo } from "react";
 
 import styles from "./TaskBoardPage.module.scss";
 import classNames from "classnames/bind";
@@ -45,10 +45,6 @@ const TaskBoardPage: FC = () => {
 
 	const [cards, setCards] = useState<TCardList>(cardsList);
 
-	useEffect(()=>{
-		setCards([...cards, {id: 0, columnId: 0, content: "todo"}])
-	}, [])
-
 	const toDoCards = useMemo(()=>{
 		return cards.filter(card => card.columnId === 0)
 	}, [cards])
@@ -64,7 +60,7 @@ const TaskBoardPage: FC = () => {
 	return (
 		<div className={cx("task-board")}>
 			<div className={cx("task-board__input")}>
-				<BoardInput />
+				<BoardInput setCards={setCards} cards={cards}/>
 			</div>
 			<div className={cx("task-board__columns")}>
 				<BoardColumn cards={toDoCards} />

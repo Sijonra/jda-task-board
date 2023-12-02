@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import style from "./Button.module.scss";
 
 interface ButtonProps {
@@ -10,6 +10,7 @@ interface ButtonProps {
   iDownLeft?: boolean;
   iDownRight?: boolean;
   children?: React.ReactNode;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void; 
 }
 
 const Button: FC<ButtonProps> = ({
@@ -20,10 +21,12 @@ const Button: FC<ButtonProps> = ({
   iDownLeft,
   iDownRight,
   children,
+  onClick,
 }) => {
   return (
     <div>
       <button
+		onClick={onClick}
         className={
           style["button"] + " " + style["button__" + type] + " " + className
         }

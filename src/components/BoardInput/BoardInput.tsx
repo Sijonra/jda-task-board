@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 
 import styles from "./BoardInput.module.scss";
 import classNames from "classnames/bind";
@@ -9,12 +9,26 @@ import {useState} from 'react';
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 
-const BoardInput: FC = () => {
+import { TCard, TCardList } from "../../@types/types";
+
+interface BoardInputProps{
+	setCards: Dispatch<SetStateAction<TCardList>>;
+	cards: TCardList;
+}
+
+const BoardInput: FC<BoardInputProps> = ({setCards, cards}) => {
 
 	const [inputValue, setInputValue] = useState('');
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
 		setInputValue(event.target.value);
+	}
+
+	const addButtonSubmit = () =>{
+		const currentId = cards.length;
+		const currentCard:TCard = {id:currentId, columnId: 0, content: inputValue}
+		setCards([...cards, currentCard]);
+		setInputValue('');
 	}
 
 	return (
@@ -26,6 +40,7 @@ const BoardInput: FC = () => {
 				placeholder="add new task"
 			/>
 			<Button
+				onClick={addButtonSubmit}
 				type="minimal"
 				plusLeft={true}
 				className={cx("board-input__button")}
