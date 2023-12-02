@@ -5,9 +5,11 @@ interface InputProps {
 	type?: string;
 	className?: string;
 	placeholder?: string;
+	value: string;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FC<InputProps> = ({ type, className, placeholder }) => {
+const Input: FC<InputProps> = ({ type, className, placeholder, value, onChange}) => {
 	return (
 		<div className={style["input"] + " " + className}>
 			{type === "search" && (
@@ -27,7 +29,7 @@ const Input: FC<InputProps> = ({ type, className, placeholder }) => {
 					/>
 				</svg>
 			)}
-			<input type="text" placeholder={placeholder} />
+			<input type="text" onChange={onChange} value={value} placeholder={placeholder} />
 		</div>
 	);
 };

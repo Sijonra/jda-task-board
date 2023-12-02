@@ -19,7 +19,7 @@ const BoardColumn: FC<BoardColumnProps> = ({cards}) => {
 			{
 				cards.map((card)=>{
 					return(
-						<Card elevation={3} className={cx("board-column__card", "board-card")}>
+						<Card key={card.id} elevation={3} className={cx("board-column__card", "board-card")}>
 							{card.content}
 							<Badge color="green" type="badge" theme="solid" text={card.id.toString()} className={cx('board-card__badge')} />
 						</Card>
