@@ -10,32 +10,32 @@ import { TCardList } from "../../@types/types";
 
 const cardsList: TCardList = [
 	{
-		id: 0,
+		id: 1,
 		columnId: 0,
 		content: 'hello'
 	},
 	{
-		id: 1,
+		id: 2,
 		columnId: 0,
 		content: 'world'
 	},
 	{
-		id: 2,
+		id: 3,
 		columnId: 0,
 		content: 'cringe'
 	},
 	{
-		id: 3,
+		id: 4,
 		columnId: 1,
 		content: 'inProgress'
 	},
 	{
-		id: 4,
+		id: 5,
 		columnId: 2,
 		content: 'Done'
 	},
 	{
-		id: 5,
+		id: 6,
 		columnId: 2,
 		content: 'Done'
 	},
@@ -46,7 +46,9 @@ const TaskBoardPage: FC = () => {
 	const [cards, setCards] = useState<TCardList>(cardsList);
 
 	const onCardDelete = (cardId: number) =>{
-		setCards(cards.filter(card => card.id !== cardId))
+		const newCards = (cards.filter(card => card.id !== cardId))
+		newCards.map((card, index) => card.id = index + 1)
+		setCards(newCards);
 	}
 
 	const toDoCards = useMemo(()=>{
