@@ -6,4 +6,12 @@ interface TCard {
 
 type TCardList = TCard[];
 
-export type { TCard, TCardList };
+type TDragHandlerFunctions = {
+	onDragStartHandler: () => void;
+	onDragLeaveHandler: () => void;
+	onDragEndHandler: () => void;
+	onDragOverHandler: () => void;
+	onDragDropHandler: () => void;
+};
+
+export type { TCard, TCardList, TDragHandlerFunctions };
