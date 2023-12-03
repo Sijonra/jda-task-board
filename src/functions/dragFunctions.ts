@@ -1,7 +1,8 @@
-import { TDragHandlerFunctions } from "../@types/types";
+import { TDragFunctions } from "../@types/types";
 
-export const onDragHandlerFunctions: TDragHandlerFunctions = {
-	onDragStartHandler: () => {
+export const dragFunctions: TDragFunctions = {
+	onDragStartHandler: (card) => {
+		console.log(card);
 		console.log('drag START')
 	},
 	onDragLeaveHandler: () => {
@@ -10,10 +11,10 @@ export const onDragHandlerFunctions: TDragHandlerFunctions = {
 	onDragEndHandler: () => {
 		console.log('drag END')
 	},
-	onDragOverHandler: () => {
-		console.log('drag OVER')
+	onDragOverHandler: (id) => {
+		console.log('drag OVER ' + id)
 	},
-	onDragDropHandler: () => {
-		console.log('drag DROP')
+	onDragDropHandler: (currentDragCardId, columnId) => {
+		console.log('CARD with id === ' + currentDragCardId + " DROP into column with id === " + columnId)
 	}
 } 

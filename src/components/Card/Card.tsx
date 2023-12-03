@@ -1,5 +1,8 @@
 import { FC } from "react";
 import style from "./Card.module.scss";
+import { dragFunctions } from "../../functions/dragFunctions";
+// import { TCard } from "../../@types/types";
+import { useDrag } from "../Context/DragContext";
 
 interface CardProps {
 	elevation: 1 | 2 | 3;
@@ -7,6 +10,9 @@ interface CardProps {
 	subtitle?: string;
 	children?: React.ReactNode;
 	className?: string;
+	draggable?: boolean;
+	cardId?: number;
+	currentColumnId: number;
 }
 
 const Card: FC<CardProps> = ({
@@ -14,11 +20,42 @@ const Card: FC<CardProps> = ({
 	title,
 	subtitle,
 	children,
+	draggable,
 	className,
+	cardId,
+	currentColumnId,
 }) => {
+
+	const { setCurrentDragCardId } = useDrag();
+
+	const handleDragStart = () => {
+		console.log(cardId);
+			setCurrentDragCardId(cardId);
+			dragFunctions.onDragStartHandler(cardId);
+		// dragFunctions.onDragStartHandler(card);
+	};
+
+	const handleDragOver = (e: React.DragEvent) => {
+		e.preventDefault();
+		dragFunctions.onDragOverHandler(currentColumnId);
+	};
+
 	return (
 		<>
 			<div
+				onDragStart={handleDragStart}
+				onDragLeave={()=>{
+					dragFunctions.onDragLeaveHandler()
+				}}
+				onDragOver={handleDragOver}
+				// onDrop={()=>{
+				// 	console.log(currentColumnId);
+				// 	dragFunctions.onDragDropHandler(currentColumnId)
+				// }}
+				onDragEnd={()=>{
+					dragFunctions.onDragEndHandler()
+				}}
+				draggable={draggable}
 				className={
 					style["card"] +
 					" " +
