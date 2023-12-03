@@ -8,7 +8,7 @@ import Card from "../Card/Card";
 import Badge from "../Badge/Badge";
 import Button from "../Button/Button";
 
-import { TCardList } from "../../@types/types";
+import { TCardList, TSetCardsAction } from "../../@types/types";
 import { dragFunctions } from "../../functions/dragFunctions";
 import { useDrag } from "../Context/DragContext";
 
@@ -16,9 +16,11 @@ interface BoardColumnProps {
 	cards: TCardList;
 	onCardDelete: (cardId: number) => void;
 	id: number;
+	allCards: TCardList;
+	setCards: TSetCardsAction;
 }
 
-const BoardColumn: FC<BoardColumnProps> = ({cards, onCardDelete, id}) => {
+const BoardColumn: FC<BoardColumnProps> = ({cards, onCardDelete, id, allCards, setCards}) => {
 
 	const { currentDragCardId } = useDrag();
 
@@ -36,6 +38,13 @@ const BoardColumn: FC<BoardColumnProps> = ({cards, onCardDelete, id}) => {
 		// }
 		console.log();
 		dragFunctions.onDragDropHandler(currentDragCardId, id);
+
+		const newCardsArray = allCards.map((card)=>{
+			return card.id === currentDragCardId ? { ...card, columnId: id } : card
+		})
+
+		setCards(newCardsArray);
+
 	};
 
 	return (

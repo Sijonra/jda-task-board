@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface TCard {
 	id: number;
 	columnId: number;
@@ -14,4 +16,6 @@ type TDragFunctions = {
 	onDragDropHandler: (currentDragCardId: number | undefined, targetColumnId: number) => void;
 };
 
-export type { TCard, TCardList, TDragFunctions };
+type TSetCardsAction = Dispatch<SetStateAction<TCardList>>
+
+export type { TCard, TCardList, TDragFunctions, TSetCardsAction };

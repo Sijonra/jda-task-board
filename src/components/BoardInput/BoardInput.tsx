@@ -1,4 +1,4 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC } from "react";
 
 import styles from "./BoardInput.module.scss";
 import classNames from "classnames/bind";
@@ -10,9 +10,10 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 
 import { TCard, TCardList } from "../../@types/types";
+import { TSetCardsAction } from "../../@types/types";
 
 interface BoardInputProps{
-	setCards: Dispatch<SetStateAction<TCardList>>;
+	setCards: TSetCardsAction;
 	cards: TCardList;
 }
 
