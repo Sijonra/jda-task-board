@@ -93,6 +93,7 @@ const TaskBoardPage: FC = () => {
 			</div>
 			<div className={cx("task-board__columns")}>
 				<BoardColumn
+					title="To Do"
 					allCards={cards}
 					setCards={setCards}
 					id={0}
@@ -100,6 +101,7 @@ const TaskBoardPage: FC = () => {
 					onCardDelete={onCardDelete}
 				/>
 				<BoardColumn
+					title="In Progress"
 					allCards={cards}
 					setCards={setCards}
 					id={1}
@@ -107,6 +109,7 @@ const TaskBoardPage: FC = () => {
 					onCardDelete={onCardDelete}
 				/>
 				<BoardColumn
+					title="done"
 					allCards={cards}
 					setCards={setCards}
 					id={2}

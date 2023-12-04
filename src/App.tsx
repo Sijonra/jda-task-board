@@ -6,7 +6,7 @@ import TaskBoardPage from "./pages/TaskBoardPage/TaskBoardPage";
 function App() {
 	return (
 		<DragProvider>
-			<div>
+			<div className="app-wrapper">
 				<TaskBoardPage />
 			</div>
 		</DragProvider>
