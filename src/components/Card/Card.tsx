@@ -1,7 +1,5 @@
 import { FC } from "react";
 import style from "./Card.module.scss";
-import { dragFunctions } from "../../functions/dragFunctions";
-// import { TCard } from "../../@types/types";
 import { useDrag } from "../Context/DragContext";
 
 interface CardProps {
@@ -23,38 +21,22 @@ const Card: FC<CardProps> = ({
 	draggable,
 	className,
 	cardId,
-	currentColumnId,
 }) => {
-
 	const { setCurrentDragCardId } = useDrag();
 
-	const handleDragStart = () => {
-		console.log(cardId);
-			setCurrentDragCardId(cardId);
-			dragFunctions.onDragStartHandler(cardId);
-		// dragFunctions.onDragStartHandler(card);
-	};
+	const handleDragStart = () => setCurrentDragCardId(cardId);
 
-	const handleDragOver = (e: React.DragEvent) => {
-		e.preventDefault();
-		dragFunctions.onDragOverHandler(currentColumnId);
-	};
+	const handleDragEnd = () => setCurrentDragCardId(undefined);
+
+	const handleDragOver = (e: React.DragEvent) => e.preventDefault();
 
 	return (
 		<>
 			<div
 				onDragStart={handleDragStart}
-				onDragLeave={()=>{
-					dragFunctions.onDragLeaveHandler()
-				}}
+				onDragLeave={() => {}}
 				onDragOver={handleDragOver}
-				// onDrop={()=>{
-				// 	console.log(currentColumnId);
-				// 	dragFunctions.onDragDropHandler(currentColumnId)
-				// }}
-				onDragEnd={()=>{
-					dragFunctions.onDragEndHandler()
-				}}
+				onDragEnd={handleDragEnd}
 				draggable={draggable}
 				className={
 					style["card"] +
