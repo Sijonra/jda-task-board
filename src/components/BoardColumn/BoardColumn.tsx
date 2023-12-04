@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import styles from "./BoardColumn.module.scss";
 import classNames from "classnames/bind";
@@ -26,11 +26,18 @@ const BoardColumn: FC<BoardColumnProps> = ({
 	allCards,
 	setCards,
 }) => {
+	
+	const [isOver, setIsOver] = useState<boolean>(false);
+
 	const { currentDragCardId } = useDrag();
 
-	const handleDragOver = (e: React.DragEvent) => e.preventDefault();
+	const handleDragOver = (e: React.DragEvent) => {
+		setIsOver(true);
+		e.preventDefault();
+	} 
 
 	const handleDrop = (e: React.DragEvent) => {
+		setIsOver(false);
 		e.preventDefault();
 		const newCardsArray = allCards.map((card) => {
 			return card.id === currentDragCardId
@@ -40,13 +47,18 @@ const BoardColumn: FC<BoardColumnProps> = ({
 		setCards(newCardsArray);
 	};
 
+	const handleLeave = () => setIsOver(false);
+	
+	const columnClasses = `${cx('board-column')} ${isOver ? cx('board__column--over') : ""}`;
+
 	return (
 		<div
 			onDragOver={handleDragOver}
 			onDragEnter={(e) => e.preventDefault()}
+			onDragLeave={handleLeave}
 			onDrop={handleDrop}
 			draggable={true}
-			className={cx("board-column")}
+			className={columnClasses}
 		>
 			{cards.map((card) => {
 				return (

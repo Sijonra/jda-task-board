@@ -24,6 +24,13 @@
 	}
 }
 
+.board__column{
+	&--over{
+		background: $color-teal-light;
+		border-radius: 4px;
+	}
+}
+
 .board-card{
 	position: relative;
 	font-family: $font-SF-PRO-TEXT;
