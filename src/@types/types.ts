@@ -13,9 +13,12 @@ type TDragFunctions = {
 	onDragLeaveHandler: () => void;
 	onDragEndHandler: () => void;
 	onDragOverHandler: (id: number) => void;
-	onDragDropHandler: (currentDragCardId: number | undefined, targetColumnId: number) => void;
+	onDragDropHandler: (
+		currentDragCardId: number | undefined,
+		targetColumnId: number
+	) => void;
 };
 
-type TSetCardsAction = Dispatch<SetStateAction<TCardList>>
+type TSetCardsAction = Dispatch<SetStateAction<TCardList>>;
 
 export type { TCard, TCardList, TDragFunctions, TSetCardsAction };
