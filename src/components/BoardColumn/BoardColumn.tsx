@@ -17,6 +17,7 @@ interface BoardColumnProps {
 	id: number;
 	allCards: TCardList;
 	setCards: TSetCardsAction;
+	title: string;
 }
 
 const BoardColumn: FC<BoardColumnProps> = ({
@@ -25,8 +26,8 @@ const BoardColumn: FC<BoardColumnProps> = ({
 	id,
 	allCards,
 	setCards,
+	title,
 }) => {
-	
 	const [isOver, setIsOver] = useState<boolean>(false);
 
 	const { currentDragCardId } = useDrag();
@@ -34,7 +35,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
 	const handleDragOver = (e: React.DragEvent) => {
 		setIsOver(true);
 		e.preventDefault();
-	} 
+	};
 
 	const handleDrop = (e: React.DragEvent) => {
 		setIsOver(false);
@@ -48,8 +49,10 @@ const BoardColumn: FC<BoardColumnProps> = ({
 	};
 
 	const handleLeave = () => setIsOver(false);
-	
-	const columnClasses = `${cx('board-column')} ${isOver ? cx('board__column--over') : ""}`;
+
+	const columnClasses = `${cx("board-column")} ${
+		isOver ? cx("board__column--over") : ""
+	}`;
 
 	return (
 		<div
@@ -60,6 +63,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
 			draggable={true}
 			className={columnClasses}
 		>
+			<h4 className={cx('board-column__title')}>{title}</h4>
 			{cards.map((card) => {
 				return (
 					<Card
