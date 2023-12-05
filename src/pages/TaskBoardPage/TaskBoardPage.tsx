@@ -9,41 +9,9 @@ import BoardColumn from "../../components/BoardColumn/BoardColumn";
 import ModalWindow from "../../components/ModalWindow/ModalWindow";
 import { TCardList } from "../../@types/types";
 
-const cardsList: TCardList = [
-	{
-		id: 1,
-		columnId: 0,
-		content: "hello",
-	},
-	{
-		id: 2,
-		columnId: 0,
-		content: "world",
-	},
-	{
-		id: 3,
-		columnId: 0,
-		content: "cringe",
-	},
-	{
-		id: 4,
-		columnId: 1,
-		content: "inProgress",
-	},
-	{
-		id: 5,
-		columnId: 2,
-		content: "Done",
-	},
-	{
-		id: 6,
-		columnId: 2,
-		content: "Done",
-	},
-];
 
 const TaskBoardPage: FC = () => {
-	const [cards, setCards] = useState<TCardList>(cardsList);
+	const [cards, setCards] = useState<TCardList>([]);
 	const [modalWindowIsActive, setModalWindowIsActive] =
 		useState<boolean>(false);
 	const [deletingCardId, setDeletingCardId] = useState<number | null>(null);
