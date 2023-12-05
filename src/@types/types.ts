@@ -6,7 +6,7 @@ interface TCard {
 	content: string;
 }
 
-type TCardList = TCard[];
+type TCardList = TCard[] | [];
 
 type TDragFunctions = {
 	onDragStartHandler: (cardId: number | undefined) => void;

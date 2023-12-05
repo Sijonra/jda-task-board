@@ -31,6 +31,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
 	const [isOver, setIsOver] = useState<boolean>(false);
 
 	const { currentDragCardId } = useDrag();
+	const { setCurrentDragCardId } = useDrag();
 
 	const handleDragOver = (e: React.DragEvent) => {
 		setIsOver(true);
@@ -39,12 +40,15 @@ const BoardColumn: FC<BoardColumnProps> = ({
 
 	const handleDrop = (e: React.DragEvent) => {
 		setIsOver(false);
+		setCurrentDragCardId(undefined);
 		e.preventDefault();
+
 		const newCardsArray = allCards.map((card) => {
 			return card.id === currentDragCardId
 				? { ...card, columnId: id }
 				: card;
 		});
+
 		setCards(newCardsArray);
 	};
 
@@ -63,7 +67,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
 			draggable={true}
 			className={columnClasses}
 		>
-			<h4 className={cx('board-column__title')}>{title}</h4>
+			<h4 className={cx("board-column__title")}>{title}</h4>
 			{cards.map((card) => {
 				return (
 					<Card
